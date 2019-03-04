@@ -1,7 +1,7 @@
 package p_decimal
 
 import (
-	"gitee.com/pefish/p-go-reflect"
+	"github.com/pefish/go-reflect"
 	"github.com/shopspring/decimal"
 )
 
