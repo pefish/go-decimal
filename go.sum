@@ -1,5 +1,4 @@
-gitee.com/pefish/p-go-reflect v0.0.0-20190207112118-fb41a3d72b89 h1:q0A0f7jNMHBZeTE7L4IjV9muGw8OhiFZJutXbdgOxEE=
-gitee.com/pefish/p-go-reflect v0.0.0-20190207112118-fb41a3d72b89/go.mod h1:bsQ/UfBCqX4GfBInTOx8i4UXUaHo3VhmQRTcLNjVrRI=
+github.com/pefish/go-reflect v0.0.1 h1:5IyuKC2ChCFuJee1gl4dQkDfsrHRUR6knfwuz8xbhks=
 github.com/pefish/go-reflect v0.0.1/go.mod h1:lv3gz/Zh2FsqCq8jqzdCgYpoM41AjE90HtknRbkXhjQ=
 github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24 h1:pntxY8Ary0t43dCZ5dqY4YTJCObLY1kIXl0uzMv+7DE=
 github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24/go.mod h1:M+9NzErvs504Cn4c5DxATwIqPbtswREoFCre64PpcG4=
