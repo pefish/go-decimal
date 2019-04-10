@@ -28,8 +28,9 @@ func (this *DecimalClass) Gte(a interface{}) bool {
 }
 
 func (this *DecimalClass) Start(a interface{}) *DecimalClass {
-	this.result = this.interfaceToDecimal(a)
-	return this
+	decimalInstance := DecimalClass{}
+	decimalInstance.result = decimalInstance.interfaceToDecimal(a)
+	return &decimalInstance
 }
 
 func (this *DecimalClass) Abs() *DecimalClass {
