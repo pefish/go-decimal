@@ -63,3 +63,13 @@ func TestDecimalClass_RoundDownForString(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestDecimalClass_RoundForRemainString(t *testing.T) {
+	if Decimal.Start(`10.5`).RoundForRemainString(4) != `10.5000` {
+		t.Error()
+	}
+
+	if Decimal.Start(`10.01`).RoundForRemainString(1) != `10.0` {
+		t.Error()
+	}
+}

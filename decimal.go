@@ -1,8 +1,8 @@
 package p_decimal
 
 import (
+	"github.com/pefish/go-decimal/lib"
 	"github.com/pefish/go-reflect"
-	"github.com/shopspring/decimal"
 )
 
 type DecimalClass struct {
@@ -115,6 +115,11 @@ func (this *DecimalClass) Trunc(precision int32) *DecimalClass {
 // 四舍五入
 func (this *DecimalClass) RoundForString(precision int32) string {
 	return this.Round(precision).result.String()
+}
+
+// 四舍五入（后面保留0）
+func (this *DecimalClass) RoundForRemainString(precision int32) string {
+	return this.Round(precision).result.StringRemain()
 }
 
 // 四舍五入
