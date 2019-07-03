@@ -3,6 +3,7 @@ package p_decimal
 import (
 	"github.com/pefish/go-decimal/lib"
 	"github.com/pefish/go-reflect"
+	"strings"
 )
 
 type DecimalClass struct {
@@ -172,4 +173,14 @@ func (this *DecimalClass) interfaceToDecimal(a interface{}) decimal.Decimal {
 		panic(err)
 	}
 	return decimal_
+}
+
+// 判断小数的精度是不是指定精度
+func (this *DecimalClass) IsPrecision(precision int32) bool {
+	splitAmount := strings.Split(this.result.String(), `.`)
+	if len(splitAmount) <= 1 {
+		return precision == 0
+	} else {
+		return len(splitAmount[1]) == int(precision)
+	}
 }

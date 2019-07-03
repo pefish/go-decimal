@@ -73,3 +73,17 @@ func TestDecimalClass_RoundForRemainString(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestDecimalClass_IsPrecision(t *testing.T) {
+	if !Decimal.Start(`10.5`).IsPrecision(1) {
+		t.Error()
+	}
+
+	if !Decimal.Start(`10.5000`).IsPrecision(1) {
+		t.Error()
+	}
+
+	if !Decimal.Start(`10`).IsPrecision(0) {
+		t.Error()
+	}
+}
