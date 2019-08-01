@@ -1,4 +1,4 @@
-package p_decimal
+package go_decimal
 
 import (
 	"github.com/pefish/go-decimal/lib"
@@ -168,7 +168,7 @@ func (this *DecimalClass) interfaceToDecimal(a interface{}) decimal.Decimal {
 		return inst
 	}
 
-	decimal_, err := decimal.NewFromString(p_reflect.Reflect.ToString(a))
+	decimal_, err := decimal.NewFromString(go_reflect.Reflect.ToString(a))
 	if err != nil {
 		panic(err)
 	}

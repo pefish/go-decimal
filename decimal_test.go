@@ -1,4 +1,4 @@
-package p_decimal
+package go_decimal
 
 import (
 	"testing"

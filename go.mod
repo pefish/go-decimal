@@ -1,3 +1,3 @@
 module github.com/pefish/go-decimal
 
-require github.com/pefish/go-reflect v0.0.2
+require github.com/pefish/go-reflect v0.0.3
