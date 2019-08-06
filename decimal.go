@@ -12,6 +12,16 @@ type DecimalClass struct {
 
 var Decimal = DecimalClass{}
 
+// =
+func (this *DecimalClass) Eq(a interface{}) bool {
+	return this.result.Equal(this.interfaceToDecimal(a))
+}
+
+// !=
+func (this *DecimalClass) Neq(a interface{}) bool {
+	return !this.result.Equal(this.interfaceToDecimal(a))
+}
+
 // <
 func (this *DecimalClass) Lt(a interface{}) bool {
 	return this.result.LessThan(this.interfaceToDecimal(a))
