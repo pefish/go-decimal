@@ -93,6 +93,17 @@ func (this *DecimalClass) Div(a interface{}) *DecimalClass {
 	return this
 }
 
+
+func (this *DecimalClass) ShiftedBy(a interface{}) *DecimalClass {
+	this.result = this.result.Shift(go_reflect.Reflect.ToInt32(a))
+	return this
+}
+
+func (this *DecimalClass) UnShiftedBy(a interface{}) *DecimalClass {
+	this.result = this.result.Shift(-go_reflect.Reflect.ToInt32(a))
+	return this
+}
+
 // *
 func (this *DecimalClass) MultiForString(a interface{}) string {
 	return this.Multi(this.interfaceToDecimal(a)).result.String()

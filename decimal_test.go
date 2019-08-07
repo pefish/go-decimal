@@ -87,3 +87,27 @@ func TestDecimalClass_IsPrecision(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestDecimalClass_ShiftedBy(t *testing.T) {
+	if Decimal.Start(`10.5`).ShiftedBy(1).EndForString() != `105` {
+		t.Error()
+	}
+
+	if Decimal.Start(`10.5`).ShiftedBy(5).EndForString() != `1050000` {
+		t.Error()
+	}
+}
+
+func TestDecimalClass_UnShiftedBy(t *testing.T) {
+	if Decimal.Start(`10.5`).UnShiftedBy(1).EndForString() != `1.05` {
+		t.Error()
+	}
+
+	if Decimal.Start(`1050000`).UnShiftedBy(5).EndForString() != `10.5` {
+		t.Error()
+	}
+
+	if Decimal.Start(`10500000000000000`).UnShiftedBy(15).EndForString() != `10.5` {
+		t.Error()
+	}
+}
