@@ -110,4 +110,8 @@ func TestDecimalClass_UnShiftedBy(t *testing.T) {
 	if Decimal.Start(`10500000000000000`).UnShiftedBy(15).EndForString() != `10.5` {
 		t.Error()
 	}
+
+	if Decimal.Start(`1`).UnShiftedBy(0).EndForString() != `1` {
+		t.Error()
+	}
 }
