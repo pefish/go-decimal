@@ -205,3 +205,12 @@ func (this *DecimalClass) IsPrecision(precision int32) bool {
 		return len(splitAmount[1]) == int(precision)
 	}
 }
+
+func (this *DecimalClass) GetPrecision() int32 {
+	splitAmount := strings.Split(this.result.String(), `.`)
+	if len(splitAmount) <= 1 {
+		return 0
+	} else {
+		return int32(len(splitAmount[1]))
+	}
+}

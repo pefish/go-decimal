@@ -74,6 +74,20 @@ func TestDecimalClass_RoundForRemainString(t *testing.T) {
 	}
 }
 
+func TestDecimalClass_GetPrecision(t *testing.T) {
+	if Decimal.Start(`10.5`).GetPrecision() != 1 {
+		t.Error()
+	}
+
+	if Decimal.Start(`10.5000`).GetPrecision() != 1 {
+		t.Error()
+	}
+
+	if Decimal.Start(`10.0005`).GetPrecision() != 4 {
+		t.Error()
+	}
+}
+
 func TestDecimalClass_IsPrecision(t *testing.T) {
 	if !Decimal.Start(`10.5`).IsPrecision(1) {
 		t.Error()
@@ -115,3 +129,4 @@ func TestDecimalClass_UnShiftedBy(t *testing.T) {
 		t.Error()
 	}
 }
+
