@@ -95,12 +95,12 @@ func (this *DecimalClass) Div(a interface{}) *DecimalClass {
 
 
 func (this *DecimalClass) ShiftedBy(a interface{}) *DecimalClass {
-	this.result = this.result.Shift(go_reflect.Reflect.ToInt32(a))
+	this.result = this.result.Shift(go_reflect.Reflect.MustToInt32(a))
 	return this
 }
 
 func (this *DecimalClass) UnShiftedBy(a interface{}) *DecimalClass {
-	this.result = this.result.Shift(-go_reflect.Reflect.ToInt32(a))
+	this.result = this.result.Shift(-go_reflect.Reflect.MustToInt32(a))
 	return this
 }
 
@@ -189,7 +189,7 @@ func (this *DecimalClass) interfaceToDecimal(a interface{}) decimal.Decimal {
 		return inst
 	}
 
-	decimal_, err := decimal.NewFromString(go_reflect.Reflect.ToString(a))
+	decimal_, err := decimal.NewFromString(go_reflect.Reflect.MustToString(a))
 	if err != nil {
 		panic(err)
 	}
