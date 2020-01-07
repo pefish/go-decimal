@@ -134,3 +134,8 @@ func TestDecimalClass_UnShiftedBy(t *testing.T) {
 	}
 }
 
+func TestDecimalClass_Eq(t *testing.T) {
+	if !Decimal.Start(`-1`).Eq(-1) {
+		t.Error()
+	}
+}
