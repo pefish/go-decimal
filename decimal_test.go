@@ -64,12 +64,12 @@ func TestDecimalClass_RoundDownForString(t *testing.T) {
 	}
 }
 
-func TestDecimalClass_RoundForRemainString(t *testing.T) {
-	if Decimal.Start(`10.5`).RoundForRemainString(4) != `10.5000` {
+func TestDecimalClass_RoundForRemainZeroString(t *testing.T) {
+	if Decimal.Start(`10.5`).RoundForRemainZeroString(4) != `10.5000` {
 		t.Error()
 	}
 
-	if Decimal.Start(`10.01`).RoundForRemainString(1) != `10.0` {
+	if Decimal.Start(`10.01`).RoundForRemainZeroString(1) != `10.0` {
 		t.Error()
 	}
 }
@@ -137,5 +137,12 @@ func TestDecimalClass_UnShiftedBy(t *testing.T) {
 func TestDecimalClass_Eq(t *testing.T) {
 	if !Decimal.Start(`-1`).Eq(-1) {
 		t.Error()
+	}
+}
+
+func TestDecimalClass_EndForString(t *testing.T) {
+	a := `57.7800`
+	if Decimal.Start(a).EndForString() != `57.78` {
+		t.Error(Decimal.Start(a).EndForString())
 	}
 }
