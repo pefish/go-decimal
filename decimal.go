@@ -2,7 +2,7 @@ package go_decimal
 
 import (
 	"github.com/pefish/go-decimal/lib"
-	"github.com/pefish/go-reflect"
+	go_reflect "github.com/pefish/go-reflect"
 	"strings"
 )
 
@@ -94,14 +94,38 @@ func (decimalInstance *DecimalClass) Div(a interface{}) *DecimalClass {
 }
 
 
-func (decimalInstance *DecimalClass) ShiftedBy(a interface{}) *DecimalClass {
-	decimalInstance.result = decimalInstance.result.Shift(go_reflect.Reflect.MustToInt32(a))
-	return decimalInstance
+func (decimalInstance *DecimalClass) MustShiftedBy(a interface{}) *DecimalClass {
+	result, err := decimalInstance.ShiftedBy(a)
+	if err != nil {
+		panic(err)
+	}
+	return result
 }
 
-func (decimalInstance *DecimalClass) UnShiftedBy(a interface{}) *DecimalClass {
-	decimalInstance.result = decimalInstance.result.Shift(-go_reflect.Reflect.MustToInt32(a))
-	return decimalInstance
+func (decimalInstance *DecimalClass) ShiftedBy(a interface{}) (*DecimalClass, error) {
+	int32_, err := go_reflect.Reflect.ToInt32(a)
+	if err != nil {
+		return nil, err
+	}
+	decimalInstance.result = decimalInstance.result.Shift(int32_)
+	return decimalInstance, nil
+}
+
+func (decimalInstance *DecimalClass) MustUnShiftedBy(a interface{}) *DecimalClass {
+	result, err := decimalInstance.UnShiftedBy(a)
+	if err != nil {
+		panic(err)
+	}
+	return result
+}
+
+func (decimalInstance *DecimalClass) UnShiftedBy(a interface{}) (*DecimalClass, error) {
+	int32_, err := go_reflect.Reflect.ToInt32(a)
+	if err != nil {
+		return nil, err
+	}
+	decimalInstance.result = decimalInstance.result.Shift(-int32_)
+	return decimalInstance, nil
 }
 
 // *
@@ -189,7 +213,7 @@ func (decimalInstance *DecimalClass) interfaceToDecimal(a interface{}) decimal.D
 		return inst
 	}
 
-	decimal_, err := decimal.NewFromString(go_reflect.Reflect.MustToString(a))
+	decimal_, err := decimal.NewFromString(go_reflect.Reflect.ToString(a))
 	if err != nil {
 		panic(err)
 	}
