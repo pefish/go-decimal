@@ -3,6 +3,7 @@ package go_decimal
 import (
 	"github.com/pefish/go-decimal/lib"
 	go_reflect "github.com/pefish/go-reflect"
+	"math/big"
 	"strings"
 )
 
@@ -212,8 +213,14 @@ func (decimalInstance *DecimalClass) interfaceToDecimal(a interface{}) decimal.D
 	if inst, ok := a.(decimal.Decimal); ok {
 		return inst
 	}
+	str := ""
+	if inst, ok := a.(*big.Int); ok {
+		str = inst.String()
+	} else {
+		str = go_reflect.Reflect.ToString(a)
+	}
 
-	decimal_, err := decimal.NewFromString(go_reflect.Reflect.ToString(a))
+	decimal_, err := decimal.NewFromString(str)
 	if err != nil {
 		panic(err)
 	}
