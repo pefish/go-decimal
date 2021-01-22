@@ -148,6 +148,10 @@ func (decimalInstance *DecimalClass) EndForString() string {
 	return decimalInstance.result.String()
 }
 
+func (decimalInstance *DecimalClass) EndForBigInt() *big.Int {
+	return decimalInstance.result.ToBigInt()
+}
+
 // 直接截取
 func (decimalInstance *DecimalClass) TruncForString(precision int32) string {
 	return decimalInstance.Trunc(precision).result.String()

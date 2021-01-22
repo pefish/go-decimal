@@ -79,6 +79,10 @@ type Decimal struct {
 	exp int32
 }
 
+func (d Decimal) ToBigInt() *big.Int {
+	return d.value
+}
+
 // New returns a new fixed-point decimal, value * 10 ^ exp.
 func New(value int64, exp int32) Decimal {
 	return Decimal{
