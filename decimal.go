@@ -244,4 +244,3 @@ func (decimalInstance *DecimalClass) GetPrecision() int32 {
 		return int32(len(splitAmount[1]))
 	}
 }
-
