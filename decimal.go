@@ -222,6 +222,12 @@ func (decimalInstance *DecimalClass) interfaceToDecimal(a interface{}) decimal.D
 	if inst, ok := a.(decimal.Decimal); ok {
 		return inst
 	}
+	if inst, ok := a.(*DecimalClass); ok {
+		return inst.result
+	}
+	if inst, ok := a.(DecimalClass); ok {
+		return inst.result
+	}
 	str := ""
 	if inst, ok := a.(*big.Int); ok {
 		str = inst.String()

@@ -17,7 +17,7 @@ func TestDecimalClass_AbsForString(t *testing.T) {
 }
 
 func TestDecimalClass_AddForString(t *testing.T) {
-	if Decimal.Start(`-1`).AddForString(1) != `0` {
+	if Decimal.Start(`-1`).AddForString("-2.407990391483160877") != `-3.407990391483160877` {
 		t.Error()
 	}
 }
@@ -103,33 +103,33 @@ func TestDecimalClass_IsPrecision(t *testing.T) {
 }
 
 func TestDecimalClass_ShiftedBy(t *testing.T) {
-	if Decimal.Start(`10.5`).ShiftedBy(1).EndForString() != `105` {
+	if Decimal.Start(`10.5`).MustShiftedBy(1).EndForString() != `105` {
 		t.Error()
 	}
 
-	if Decimal.Start(`10.5`).ShiftedBy(5).EndForString() != `1050000` {
+	if Decimal.Start(`10.5`).MustShiftedBy(5).EndForString() != `1050000` {
 		t.Error()
 	}
 
-	if Decimal.Start(`10000`).ShiftedBy(18).EndForString() != `10000000000000000000000` {
+	if Decimal.Start(`10000`).MustShiftedBy(18).EndForString() != `10000000000000000000000` {
 		t.Error()
 	}
 }
 
 func TestDecimalClass_UnShiftedBy(t *testing.T) {
-	if Decimal.Start(`10.5`).UnShiftedBy(1).EndForString() != `1.05` {
+	if Decimal.Start(`10.5`).MustUnShiftedBy(1).EndForString() != `1.05` {
 		t.Error()
 	}
 
-	if Decimal.Start(`1050000`).UnShiftedBy(5).EndForString() != `10.5` {
+	if Decimal.Start(`1050000`).MustUnShiftedBy(5).EndForString() != `10.5` {
 		t.Error()
 	}
 
-	if Decimal.Start(`10500000000000000`).UnShiftedBy(15).EndForString() != `10.5` {
+	if Decimal.Start(`10500000000000000`).MustUnShiftedBy(15).EndForString() != `10.5` {
 		t.Error()
 	}
 
-	if Decimal.Start(`1`).UnShiftedBy(0).EndForString() != `1` {
+	if Decimal.Start(`1`).MustUnShiftedBy(0).EndForString() != `1` {
 		t.Error()
 	}
 }
