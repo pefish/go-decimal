@@ -1,7 +1,8 @@
 package go_decimal
 
 import (
-	"errors"
+	"fmt"
+	"github.com/pkg/errors"
 	"github.com/pefish/go-decimal/lib"
 	go_reflect "github.com/pefish/go-reflect"
 	"math/big"
@@ -152,7 +153,7 @@ func (decimalInstance *DecimalClass) EndForString() string {
 func (decimalInstance *DecimalClass) EndForBigInt() *big.Int {
 	result, ok := new(big.Int).SetString(decimalInstance.result.String(), 10)
 	if !ok {
-		panic(errors.New("string to bigInt error"))
+		panic(errors.New(fmt.Sprintf("string %s to bigInt error", decimalInstance.result.String())))
 	}
 	return result
 }
