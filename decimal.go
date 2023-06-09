@@ -2,9 +2,9 @@ package go_decimal
 
 import (
 	"fmt"
-	"github.com/pkg/errors"
 	"github.com/pefish/go-decimal/lib"
 	go_reflect "github.com/pefish/go-reflect"
+	"github.com/pkg/errors"
 	"math/big"
 	"strings"
 )
@@ -96,7 +96,6 @@ func (decimalInstance *DecimalClass) Div(a interface{}) *DecimalClass {
 	return decimalInstance
 }
 
-
 func (decimalInstance *DecimalClass) MustShiftedBy(a interface{}) *DecimalClass {
 	result, err := decimalInstance.ShiftedBy(a)
 	if err != nil {
@@ -156,6 +155,10 @@ func (decimalInstance *DecimalClass) EndForBigInt() *big.Int {
 		panic(errors.New(fmt.Sprintf("string %s to bigInt error", decimalInstance.result.String())))
 	}
 	return result
+}
+
+func (decimalInstance *DecimalClass) EndForUint64() uint64 {
+	return go_reflect.Reflect.MustToUint64(decimalInstance.result.String())
 }
 
 // 直接截取
