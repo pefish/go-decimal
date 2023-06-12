@@ -161,6 +161,10 @@ func (decimalInstance *DecimalClass) EndForUint64() uint64 {
 	return go_reflect.Reflect.MustToUint64(decimalInstance.result.String())
 }
 
+func (decimalInstance *DecimalClass) EndForInt64() int64 {
+	return go_reflect.Reflect.MustToInt64(decimalInstance.result.String())
+}
+
 // 直接截取
 func (decimalInstance *DecimalClass) TruncForString(precision int32) string {
 	return decimalInstance.Trunc(precision).result.String()
