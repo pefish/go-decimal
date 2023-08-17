@@ -20,6 +20,11 @@ func TestDecimalClass_AddForString(t *testing.T) {
 	if Decimal.Start(`-1`).AddForString("-2.407990391483160877") != `-3.407990391483160877` {
 		t.Error()
 	}
+
+	a := 1
+	if Decimal.Start(&a).AddForString(2) != "3" {
+		t.Error()
+	}
 }
 
 func TestDecimalClass_SubForString(t *testing.T) {
