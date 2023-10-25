@@ -1,5 +1,7 @@
 github.com/pefish/go-reflect v0.2.2 h1:rNYU5mMIouRaZyAjDt2/rooNm0zx2IaRBa344Bq1s9o=
 github.com/pefish/go-reflect v0.2.2/go.mod h1:J1PmxXVMl+IqyzuL1OndaKqZjkvfKLaZA9LpUCUB99c=
+github.com/pefish/go-test v0.0.4 h1:s1RmZWe91K1MtENJUcl7CjGUFK/TmleZ5h3OkHq/BTI=
+github.com/pefish/go-test v0.0.4/go.mod h1:z9DAQQyjfKx0dRTBSaJCOSMwyMjwNEHI+/CBwNaCwk0=
 github.com/pefish/go-test-assert v0.0.1 h1:zWV2Hnn/Rtjf+bEOlyB8qF9ThJb7gmXpRPWEqJtjzjg=
 github.com/pefish/go-test-assert v0.0.1/go.mod h1:kfcsv5ag411u06gdV4iRKU8D0zOglian/DBacnCoQdc=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=

@@ -52,12 +52,12 @@ func (decimalInstance *DecimalClass) Start(a interface{}) *DecimalClass {
 	return &decimalInstanceNew
 }
 
-// \-1\ = 1
+// |-1| = 1
 func (decimalInstance *DecimalClass) AbsForString() string {
 	return decimalInstance.Abs().result.String()
 }
 
-// \-1\ = 1
+// |-1| = 1
 func (decimalInstance *DecimalClass) Abs() *DecimalClass {
 	decimalInstance.result = decimalInstance.result.Abs()
 	return decimalInstance
@@ -104,6 +104,7 @@ func (decimalInstance *DecimalClass) MustShiftedBy(a interface{}) *DecimalClass 
 	return result
 }
 
+// * 10^x
 func (decimalInstance *DecimalClass) ShiftedBy(a interface{}) (*DecimalClass, error) {
 	int32_, err := go_reflect.Reflect.ToInt32(a)
 	if err != nil {
@@ -121,6 +122,7 @@ func (decimalInstance *DecimalClass) MustUnShiftedBy(a interface{}) *DecimalClas
 	return result
 }
 
+// / 10^x
 func (decimalInstance *DecimalClass) UnShiftedBy(a interface{}) (*DecimalClass, error) {
 	int32_, err := go_reflect.Reflect.ToInt32(a)
 	if err != nil {
@@ -139,6 +141,36 @@ func (decimalInstance *DecimalClass) MultiForString(a interface{}) string {
 func (decimalInstance *DecimalClass) Multi(a interface{}) *DecimalClass {
 	decimalInstance.result = decimalInstance.result.Mul(decimalInstance.interfaceToDecimal(a))
 	return decimalInstance
+}
+
+// ^x
+func (decimalInstance *DecimalClass) Pow(a interface{}) *DecimalClass {
+	decimalInstance.result = decimalInstance.result.Pow(decimalInstance.interfaceToDecimal(a))
+	return decimalInstance
+}
+
+// % x
+func (decimalInstance *DecimalClass) Mod(a interface{}) *DecimalClass {
+	decimalInstance.result = decimalInstance.result.Mod(decimalInstance.interfaceToDecimal(a))
+	return decimalInstance
+}
+
+// 根号
+func (decimalInstance *DecimalClass) Sqrt() (*DecimalClass, error) {
+	result, err := decimalInstance.result.Sqrt()
+	if err != nil {
+		return nil, err
+	}
+	decimalInstance.result = result
+	return decimalInstance, nil
+}
+
+func (decimalInstance *DecimalClass) MustSqrt() *DecimalClass {
+	result, err := decimalInstance.Sqrt()
+	if err != nil {
+		panic(err)
+	}
+	return result
 }
 
 func (decimalInstance *DecimalClass) End() decimal.Decimal {

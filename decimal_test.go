@@ -1,6 +1,7 @@
 package go_decimal
 
 import (
+	go_test_ "github.com/pefish/go-test"
 	"testing"
 )
 
@@ -144,14 +145,26 @@ func TestDecimalClass_UnShiftedBy(t *testing.T) {
 }
 
 func TestDecimalClass_Eq(t *testing.T) {
-	if !Decimal.Start(`-1`).Eq(-1) {
-		t.Error()
-	}
+	go_test_.Equal(t, true, Decimal.Start(`-1`).Eq(-1))
 }
 
 func TestDecimalClass_EndForString(t *testing.T) {
-	a := `57.7800`
-	if Decimal.Start(a).EndForString() != `57.78` {
-		t.Error(Decimal.Start(a).EndForString())
-	}
+	go_test_.Equal(t, "57.78", Decimal.Start("57.7800").EndForString())
+}
+
+func TestDecimalClass_Pow(t *testing.T) {
+	go_test_.Equal(t, "144", Decimal.Start(12).Pow(2).EndForString())
+}
+
+func TestDecimalClass_Mod(t *testing.T) {
+	go_test_.Equal(t, "2", Decimal.Start(12).Mod(10).EndForString())
+}
+
+func TestDecimalClass_Sqrt(t *testing.T) {
+	result, err := Decimal.Start(4).Sqrt()
+	go_test_.Equal(t, nil, err)
+	go_test_.Equal(t, "2", result.EndForString())
+
+	_, err = Decimal.Start(-4).Sqrt()
+	go_test_.Equal(t, "The result of this operation is imaginary.", err.Error())
 }
