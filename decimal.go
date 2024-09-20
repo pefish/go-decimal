@@ -275,7 +275,7 @@ func (d *DecimalType) MustShiftedBy(a interface{}) *DecimalType {
 
 // * 10^x
 func (d *DecimalType) ShiftedBy(a interface{}) (*DecimalType, error) {
-	int32_, err := go_format.FormatInstance.ToInt32(a)
+	int32_, err := go_format.ToInt32(a)
 	if err != nil {
 		return nil, err
 	}
@@ -293,7 +293,7 @@ func (d *DecimalType) MustUnShiftedBy(a interface{}) *DecimalType {
 
 // / 10^x
 func (d *DecimalType) UnShiftedBy(a interface{}) (*DecimalType, error) {
-	int32_, err := go_format.FormatInstance.ToInt32(a)
+	int32_, err := go_format.ToInt32(a)
 	if err != nil {
 		return nil, err
 	}
@@ -427,7 +427,7 @@ func (d *DecimalType) MustEndForUint64() uint64 {
 }
 
 func (d *DecimalType) EndForUint64() (uint64, error) {
-	return go_format.FormatInstance.ToUint64(d.result.String())
+	return go_format.ToUint64(d.result.String())
 }
 
 func (d *DecimalType) MustEndForInt64() int64 {
@@ -439,7 +439,7 @@ func (d *DecimalType) MustEndForInt64() int64 {
 }
 
 func (d *DecimalType) EndForInt64() (int64, error) {
-	return go_format.FormatInstance.ToInt64(d.result.String())
+	return go_format.ToInt64(d.result.String())
 }
 
 func (d *DecimalType) MustEndForInt() int {
@@ -451,7 +451,7 @@ func (d *DecimalType) MustEndForInt() int {
 }
 
 func (d *DecimalType) EndForInt() (int, error) {
-	return go_format.FormatInstance.ToInt(d.result.String())
+	return go_format.ToInt(d.result.String())
 }
 
 func (d *DecimalType) MustEndForFloat64() float64 {
@@ -463,7 +463,7 @@ func (d *DecimalType) MustEndForFloat64() float64 {
 }
 
 func (d *DecimalType) EndForFloat64() (float64, error) {
-	return go_format.FormatInstance.ToFloat64(d.result.String())
+	return go_format.ToFloat64(d.result.String())
 }
 
 // 直接截取
@@ -541,7 +541,7 @@ func (d *DecimalType) interfaceToDecimal(a interface{}) (decimal.Decimal, error)
 	if inst, ok := a.(*big.Int); ok {
 		str = inst.String()
 	} else {
-		str = go_format.FormatInstance.ToString(a)
+		str = go_format.ToString(a)
 	}
 
 	decimal_, err := decimal.NewFromString(str)

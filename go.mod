@@ -5,7 +5,7 @@ go 1.20
 require github.com/pkg/errors v0.9.1
 
 require (
-	github.com/pefish/go-format v0.3.0
+	github.com/pefish/go-format v0.4.0
 	github.com/pefish/go-test v0.0.4
 )
 
