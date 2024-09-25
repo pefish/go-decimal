@@ -1,8 +1,9 @@
 package go_decimal
 
 import (
-	go_test_ "github.com/pefish/go-test"
 	"testing"
+
+	go_test_ "github.com/pefish/go-test"
 )
 
 func TestDecimalClass_Lt(t *testing.T) {
@@ -24,6 +25,18 @@ func TestDecimalClass_AddForString(t *testing.T) {
 
 	a := 1
 	if Decimal.MustStart(&a).MustAddForString(2) != "3" {
+		t.Error()
+	}
+
+	if Decimal.MustStart("0x12").MustAddForString(2) != "20" {
+		t.Error()
+	}
+
+	if Decimal.MustStart("0o12").MustAddForString(2) != "12" {
+		t.Error()
+	}
+
+	if Decimal.MustStart("0b11").MustAddForString(2) != "5" {
 		t.Error()
 	}
 }

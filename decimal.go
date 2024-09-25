@@ -3,6 +3,7 @@ package go_decimal
 import (
 	"fmt"
 	"math/big"
+	"strconv"
 	"strings"
 
 	decimal "github.com/pefish/go-decimal/lib"
@@ -542,6 +543,26 @@ func (d *DecimalType) interfaceToDecimal(a interface{}) (decimal.Decimal, error)
 		str = inst.String()
 	} else {
 		str = go_format.ToString(a)
+	}
+
+	if strings.HasPrefix(str, "0x") || strings.HasPrefix(str, "0X") {
+		r, err := strconv.ParseUint(str[2:], 16, 64)
+		if err != nil {
+			return decimal.Decimal{}, err
+		}
+		str = go_format.ToString(r)
+	} else if strings.HasPrefix(str, "0o") || strings.HasPrefix(str, "0O") {
+		r, err := strconv.ParseUint(str[2:], 8, 64)
+		if err != nil {
+			return decimal.Decimal{}, err
+		}
+		str = go_format.ToString(r)
+	} else if strings.HasPrefix(str, "0b") || strings.HasPrefix(str, "0B") {
+		r, err := strconv.ParseUint(str[2:], 2, 64)
+		if err != nil {
+			return decimal.Decimal{}, err
+		}
+		str = go_format.ToString(r)
 	}
 
 	decimal_, err := decimal.NewFromString(str)
