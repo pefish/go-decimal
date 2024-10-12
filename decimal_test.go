@@ -1,6 +1,7 @@
 package go_decimal
 
 import (
+	"math/big"
 	"testing"
 
 	go_test_ "github.com/pefish/go-test"
@@ -180,4 +181,13 @@ func TestDecimalClass_Sqrt(t *testing.T) {
 
 	_, err = Decimal.MustStart(-4).Sqrt()
 	go_test_.Equal(t, "The result of this operation is imaginary.", err.Error())
+}
+
+func TestDecimalClass_MustEndForBigFloat(t *testing.T) {
+	a := big.NewFloat(1.1)
+	result := Decimal.MustStart(a).MustAdd(1.2).EndForString()
+	go_test_.Equal(t, "2.3", result)
+
+	result1 := Decimal.MustStart(a).MustAdd(1.2).MustEndForBigFloat()
+	go_test_.Equal(t, "2.3", result1.String())
 }

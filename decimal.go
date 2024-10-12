@@ -414,7 +414,23 @@ func (d *DecimalType) MustEndForBigInt() *big.Int {
 func (d *DecimalType) EndForBigInt() (*big.Int, error) {
 	result, ok := new(big.Int).SetString(d.result.String(), 10)
 	if !ok {
-		return nil, errors.New(fmt.Sprintf("string %s to bigInt error", d.result.String()))
+		return nil, errors.New(fmt.Sprintf("String %s to bigInt error", d.result.String()))
+	}
+	return result, nil
+}
+
+func (d *DecimalType) MustEndForBigFloat() *big.Float {
+	r, err := d.EndForBigFloat()
+	if err != nil {
+		panic(err)
+	}
+	return r
+}
+
+func (d *DecimalType) EndForBigFloat() (*big.Float, error) {
+	result, ok := new(big.Float).SetString(d.result.String())
+	if !ok {
+		return nil, errors.New(fmt.Sprintf("String %s to bigInt error", d.result.String()))
 	}
 	return result, nil
 }
@@ -540,6 +556,8 @@ func (d *DecimalType) interfaceToDecimal(a interface{}) (decimal.Decimal, error)
 	}
 	str := ""
 	if inst, ok := a.(*big.Int); ok {
+		str = inst.String()
+	} else if inst, ok := a.(*big.Float); ok {
 		str = inst.String()
 	} else {
 		str = go_format.ToString(a)
