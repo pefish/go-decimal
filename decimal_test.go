@@ -40,6 +40,10 @@ func TestDecimalClass_AddForString(t *testing.T) {
 	if Decimal.MustStart("0b11").MustAddForString(2) != "5" {
 		t.Error()
 	}
+
+	b := Decimal.MustStart("0.000820179346176737").MustAdd("0.000433474346709516").MustAdd("0.000322133178438187").MustAdd("0.000326434100060436").MustAdd("0.00035142973275547").EndForString()
+
+	go_test_.Equal(t, "0.002253650704140346", b)
 }
 
 func TestDecimalClass_SubForString(t *testing.T) {
