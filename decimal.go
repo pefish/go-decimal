@@ -583,6 +583,10 @@ func (d *DecimalType) interfaceToDecimal(a interface{}) (decimal.Decimal, error)
 		str = go_format.ToString(r)
 	}
 
+	if str == "" {
+		return decimal.NewFromFloat(0), nil
+	}
+
 	decimal_, err := decimal.NewFromString(str)
 	if err != nil {
 		return decimal.Decimal{}, err

@@ -41,9 +41,13 @@ func TestDecimalClass_AddForString(t *testing.T) {
 		t.Error()
 	}
 
-	b := Decimal.MustStart("0.000820179346176737").MustAdd("0.000433474346709516").MustAdd("0.000322133178438187").MustAdd("0.000326434100060436").MustAdd("0.00035142973275547").EndForString()
+	b := Decimal.MustStart("0.000820179346176737").MustAdd("0.000433474346709516").MustAdd("0.000322133178438187").MustAdd("0.000326434100060436").MustAddForString("0.00035142973275547")
 
 	go_test_.Equal(t, "0.002253650704140346", b)
+
+	if Decimal.MustStart("").MustAddForString(2) != "2" {
+		t.Error()
+	}
 }
 
 func TestDecimalClass_SubForString(t *testing.T) {
