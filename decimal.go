@@ -17,7 +17,7 @@ type DecimalType struct {
 
 var Decimal = DecimalType{}
 
-func (d *DecimalType) MustEq(a interface{}) bool {
+func (d *DecimalType) MustEq(a any) bool {
 	b, err := d.Eq(a)
 	if err != nil {
 		panic(err)
@@ -26,7 +26,7 @@ func (d *DecimalType) MustEq(a interface{}) bool {
 }
 
 // =
-func (d *DecimalType) Eq(a interface{}) (bool, error) {
+func (d *DecimalType) Eq(a any) (bool, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return false, err
@@ -34,7 +34,7 @@ func (d *DecimalType) Eq(a interface{}) (bool, error) {
 	return d.result.Equal(deci), nil
 }
 
-func (d *DecimalType) MustNeq(a interface{}) bool {
+func (d *DecimalType) MustNeq(a any) bool {
 	b, err := d.Neq(a)
 	if err != nil {
 		panic(err)
@@ -43,7 +43,7 @@ func (d *DecimalType) MustNeq(a interface{}) bool {
 }
 
 // !=
-func (d *DecimalType) Neq(a interface{}) (bool, error) {
+func (d *DecimalType) Neq(a any) (bool, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return false, err
@@ -51,7 +51,7 @@ func (d *DecimalType) Neq(a interface{}) (bool, error) {
 	return !d.result.Equal(deci), nil
 }
 
-func (d *DecimalType) MustLt(a interface{}) bool {
+func (d *DecimalType) MustLt(a any) bool {
 	b, err := d.Lt(a)
 	if err != nil {
 		panic(err)
@@ -60,7 +60,7 @@ func (d *DecimalType) MustLt(a interface{}) bool {
 }
 
 // <
-func (d *DecimalType) Lt(a interface{}) (bool, error) {
+func (d *DecimalType) Lt(a any) (bool, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return false, err
@@ -68,7 +68,7 @@ func (d *DecimalType) Lt(a interface{}) (bool, error) {
 	return d.result.LessThan(deci), nil
 }
 
-func (d *DecimalType) MustLte(a interface{}) bool {
+func (d *DecimalType) MustLte(a any) bool {
 	b, err := d.Lte(a)
 	if err != nil {
 		panic(err)
@@ -77,7 +77,7 @@ func (d *DecimalType) MustLte(a interface{}) bool {
 }
 
 // <=
-func (d *DecimalType) Lte(a interface{}) (bool, error) {
+func (d *DecimalType) Lte(a any) (bool, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return false, err
@@ -85,7 +85,7 @@ func (d *DecimalType) Lte(a interface{}) (bool, error) {
 	return d.result.LessThanOrEqual(deci), nil
 }
 
-func (d *DecimalType) MustGt(a interface{}) bool {
+func (d *DecimalType) MustGt(a any) bool {
 	b, err := d.Gt(a)
 	if err != nil {
 		panic(err)
@@ -94,7 +94,7 @@ func (d *DecimalType) MustGt(a interface{}) bool {
 }
 
 // >
-func (d *DecimalType) Gt(a interface{}) (bool, error) {
+func (d *DecimalType) Gt(a any) (bool, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return false, err
@@ -102,7 +102,7 @@ func (d *DecimalType) Gt(a interface{}) (bool, error) {
 	return d.result.GreaterThan(deci), nil
 }
 
-func (d *DecimalType) MustGte(a interface{}) bool {
+func (d *DecimalType) MustGte(a any) bool {
 	b, err := d.Gte(a)
 	if err != nil {
 		panic(err)
@@ -111,7 +111,7 @@ func (d *DecimalType) MustGte(a interface{}) bool {
 }
 
 // >=
-func (d *DecimalType) Gte(a interface{}) (bool, error) {
+func (d *DecimalType) Gte(a any) (bool, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return false, err
@@ -119,8 +119,8 @@ func (d *DecimalType) Gte(a interface{}) (bool, error) {
 	return d.result.GreaterThanOrEqual(deci), nil
 }
 
-func (d *DecimalType) MustStart(a interface{}) *DecimalType {
-	deciClass, err := d.Start(a)
+func MustStart(a any) *DecimalType {
+	deciClass, err := Start(a)
 	if err != nil {
 		panic(err)
 	}
@@ -128,7 +128,7 @@ func (d *DecimalType) MustStart(a interface{}) *DecimalType {
 }
 
 // 开始计算。小数后面有0的话会自动去除
-func (d *DecimalType) Start(a interface{}) (*DecimalType, error) {
+func Start(a any) (*DecimalType, error) {
 	decimalInstanceNew := DecimalType{}
 	deci, err := decimalInstanceNew.interfaceToDecimal(a)
 	if err != nil {
@@ -149,7 +149,7 @@ func (d *DecimalType) Abs() *DecimalType {
 	return d
 }
 
-func (d *DecimalType) MustAddForString(a interface{}) string {
+func (d *DecimalType) MustAddForString(a any) string {
 	result, err := d.AddForString(a)
 	if err != nil {
 		panic(err)
@@ -158,7 +158,7 @@ func (d *DecimalType) MustAddForString(a interface{}) string {
 }
 
 // +
-func (d *DecimalType) AddForString(a interface{}) (string, error) {
+func (d *DecimalType) AddForString(a any) (string, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return "", err
@@ -170,7 +170,7 @@ func (d *DecimalType) AddForString(a interface{}) (string, error) {
 	return deciClass.result.String(), nil
 }
 
-func (d *DecimalType) MustAdd(a interface{}) *DecimalType {
+func (d *DecimalType) MustAdd(a any) *DecimalType {
 	result, err := d.Add(a)
 	if err != nil {
 		panic(err)
@@ -179,7 +179,7 @@ func (d *DecimalType) MustAdd(a interface{}) *DecimalType {
 }
 
 // +
-func (d *DecimalType) Add(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) Add(a any) (*DecimalType, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return nil, err
@@ -188,7 +188,7 @@ func (d *DecimalType) Add(a interface{}) (*DecimalType, error) {
 	return d, nil
 }
 
-func (d *DecimalType) MustSubForString(a interface{}) string {
+func (d *DecimalType) MustSubForString(a any) string {
 	result, err := d.SubForString(a)
 	if err != nil {
 		panic(err)
@@ -197,7 +197,7 @@ func (d *DecimalType) MustSubForString(a interface{}) string {
 }
 
 // -
-func (d *DecimalType) SubForString(a interface{}) (string, error) {
+func (d *DecimalType) SubForString(a any) (string, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return "", err
@@ -209,7 +209,7 @@ func (d *DecimalType) SubForString(a interface{}) (string, error) {
 	return deciClass.result.String(), nil
 }
 
-func (d *DecimalType) MustSub(a interface{}) *DecimalType {
+func (d *DecimalType) MustSub(a any) *DecimalType {
 	result, err := d.Sub(a)
 	if err != nil {
 		panic(err)
@@ -218,7 +218,7 @@ func (d *DecimalType) MustSub(a interface{}) *DecimalType {
 }
 
 // -
-func (d *DecimalType) Sub(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) Sub(a any) (*DecimalType, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return nil, err
@@ -227,7 +227,7 @@ func (d *DecimalType) Sub(a interface{}) (*DecimalType, error) {
 	return d, nil
 }
 
-func (d *DecimalType) MustDivForString(a interface{}) string {
+func (d *DecimalType) MustDivForString(a any) string {
 	result, err := d.DivForString(a)
 	if err != nil {
 		panic(err)
@@ -236,7 +236,7 @@ func (d *DecimalType) MustDivForString(a interface{}) string {
 }
 
 // /
-func (d *DecimalType) DivForString(a interface{}) (string, error) {
+func (d *DecimalType) DivForString(a any) (string, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return "", err
@@ -248,7 +248,7 @@ func (d *DecimalType) DivForString(a interface{}) (string, error) {
 	return deciClass.result.String(), nil
 }
 
-func (d *DecimalType) MustDiv(a interface{}) *DecimalType {
+func (d *DecimalType) MustDiv(a any) *DecimalType {
 	result, err := d.Div(a)
 	if err != nil {
 		panic(err)
@@ -257,7 +257,7 @@ func (d *DecimalType) MustDiv(a interface{}) *DecimalType {
 }
 
 // /
-func (d *DecimalType) Div(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) Div(a any) (*DecimalType, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return nil, err
@@ -266,7 +266,7 @@ func (d *DecimalType) Div(a interface{}) (*DecimalType, error) {
 	return d, nil
 }
 
-func (d *DecimalType) MustShiftedBy(a interface{}) *DecimalType {
+func (d *DecimalType) MustShiftedBy(a any) *DecimalType {
 	result, err := d.ShiftedBy(a)
 	if err != nil {
 		panic(err)
@@ -275,7 +275,7 @@ func (d *DecimalType) MustShiftedBy(a interface{}) *DecimalType {
 }
 
 // * 10^x
-func (d *DecimalType) ShiftedBy(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) ShiftedBy(a any) (*DecimalType, error) {
 	int32_, err := go_format.ToInt32(a)
 	if err != nil {
 		return nil, err
@@ -284,7 +284,7 @@ func (d *DecimalType) ShiftedBy(a interface{}) (*DecimalType, error) {
 	return d, nil
 }
 
-func (d *DecimalType) MustUnShiftedBy(a interface{}) *DecimalType {
+func (d *DecimalType) MustUnShiftedBy(a any) *DecimalType {
 	result, err := d.UnShiftedBy(a)
 	if err != nil {
 		panic(err)
@@ -293,7 +293,7 @@ func (d *DecimalType) MustUnShiftedBy(a interface{}) *DecimalType {
 }
 
 // / 10^x
-func (d *DecimalType) UnShiftedBy(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) UnShiftedBy(a any) (*DecimalType, error) {
 	int32_, err := go_format.ToInt32(a)
 	if err != nil {
 		return nil, err
@@ -302,7 +302,7 @@ func (d *DecimalType) UnShiftedBy(a interface{}) (*DecimalType, error) {
 	return d, nil
 }
 
-func (d *DecimalType) MustMultiForString(a interface{}) string {
+func (d *DecimalType) MustMultiForString(a any) string {
 	result, err := d.MultiForString(a)
 	if err != nil {
 		panic(err)
@@ -311,7 +311,7 @@ func (d *DecimalType) MustMultiForString(a interface{}) string {
 }
 
 // *
-func (d *DecimalType) MultiForString(a interface{}) (string, error) {
+func (d *DecimalType) MultiForString(a any) (string, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return "", err
@@ -323,7 +323,7 @@ func (d *DecimalType) MultiForString(a interface{}) (string, error) {
 	return deciClass.result.String(), nil
 }
 
-func (d *DecimalType) MustMulti(a interface{}) *DecimalType {
+func (d *DecimalType) MustMulti(a any) *DecimalType {
 	result, err := d.Multi(a)
 	if err != nil {
 		panic(err)
@@ -332,7 +332,7 @@ func (d *DecimalType) MustMulti(a interface{}) *DecimalType {
 }
 
 // *
-func (d *DecimalType) Multi(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) Multi(a any) (*DecimalType, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return nil, err
@@ -341,7 +341,7 @@ func (d *DecimalType) Multi(a interface{}) (*DecimalType, error) {
 	return d, nil
 }
 
-func (d *DecimalType) MustPow(a interface{}) *DecimalType {
+func (d *DecimalType) MustPow(a any) *DecimalType {
 	result, err := d.Pow(a)
 	if err != nil {
 		panic(err)
@@ -350,7 +350,7 @@ func (d *DecimalType) MustPow(a interface{}) *DecimalType {
 }
 
 // ^x
-func (d *DecimalType) Pow(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) Pow(a any) (*DecimalType, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return nil, err
@@ -359,7 +359,7 @@ func (d *DecimalType) Pow(a interface{}) (*DecimalType, error) {
 	return d, nil
 }
 
-func (d *DecimalType) MustMod(a interface{}) *DecimalType {
+func (d *DecimalType) MustMod(a any) *DecimalType {
 	result, err := d.Mod(a)
 	if err != nil {
 		panic(err)
@@ -368,7 +368,7 @@ func (d *DecimalType) MustMod(a interface{}) *DecimalType {
 }
 
 // % x
-func (d *DecimalType) Mod(a interface{}) (*DecimalType, error) {
+func (d *DecimalType) Mod(a any) (*DecimalType, error) {
 	deci, err := d.interfaceToDecimal(a)
 	if err != nil {
 		return nil, err
@@ -544,7 +544,7 @@ func (d *DecimalType) RoundDown(precision int32) *DecimalType {
 	return d
 }
 
-func (d *DecimalType) interfaceToDecimal(a interface{}) (decimal.Decimal, error) {
+func (d *DecimalType) interfaceToDecimal(a any) (decimal.Decimal, error) {
 	if inst, ok := a.(decimal.Decimal); ok {
 		return inst, nil
 	}
